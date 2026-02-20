@@ -34,8 +34,7 @@ build/
 ## Sensitive information ###
 .env
 *.properties
-!.env.example
-!application.properties
+
 
 ### CSV Files ###
 *.csv
