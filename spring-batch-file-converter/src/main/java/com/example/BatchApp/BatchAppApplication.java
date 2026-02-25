@@ -23,7 +23,7 @@ public class BatchAppApplication {
 	@Bean
 	protected FlatFileItemReader<String> reader() {
 		return new FlatFileItemReaderBuilder<String>()
-				.resource(new ClassPathResource("cptcodes.csv"))
+				.resource(new ClassPathResource("nkch_radiology_cpt.csv"))
 				.name("cvs-reader")
 				.lineMapper((line, lineNumber) -> line)
 				.build();
@@ -31,7 +31,7 @@ public class BatchAppApplication {
 
 	@Bean
 	protected FlatFileItemWriter<String> writer() {
-		String fileLocation = "src/main/resources/processed_cptcodes.csv";
+		String fileLocation = "spring-batch-file-converter/src/main/resources/processed_nkch_radiology_cpt.csv";
 		return new FlatFileItemWriterBuilder<String>()
 				.name("csv-writer")
 				.resource(new FileSystemResource(fileLocation))
