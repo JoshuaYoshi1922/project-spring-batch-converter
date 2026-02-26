@@ -20,42 +20,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 @SpringBootApplication
 public class BatchAppApplication {
 
-	@Bean
-	protected FlatFileItemReader<String> reader() {
-		return new FlatFileItemReaderBuilder<String>()
-				.resource(new ClassPathResource("nkch_radiology_cpt.csv"))
-				.name("cvs-reader")
-				.lineMapper((line, lineNumber) -> line)
-				.build();
-	}
-
-	@Bean
-	protected FlatFileItemWriter<String> writer() {
-		String fileLocation = "spring-batch-file-converter/src/main/resources/processed_nkch_radiology_cpt.csv";
-		return new FlatFileItemWriterBuilder<String>()
-				.name("csv-writer")
-				.resource(new FileSystemResource(fileLocation))
-				.lineAggregator(item -> item) // Lambda to directly return the String
-				.build();
-	}
-
-	@Bean
-	protected Step maskingStep(JobRepository jobRepo, PlatformTransactionManager manager,
-							   FlatFileItemReader<String> reader,
-							   FlatFileItemWriter<String> writer) {
-		return new StepBuilder("masking-step", jobRepo)
-				.<String, String>chunk(3, manager)
-				.reader(reader)
-				.writer(writer)
-				.build();
-	}
-
-	@Bean
-	protected Job maskingJob(JobRepository jobRepository, Step maskingStep) {
-		return new JobBuilder("masking-job", jobRepository)
-				.start(maskingStep)
-				.build();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(BatchAppApplication.class, args);
