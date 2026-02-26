@@ -32,7 +32,7 @@ build/
 .vscode/
 
 ## Sensitive information ###
-../.env
+*.env
 
 
 ### CSV Files ###
