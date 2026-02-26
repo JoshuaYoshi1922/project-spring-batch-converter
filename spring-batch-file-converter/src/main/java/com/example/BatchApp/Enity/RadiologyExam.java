@@ -23,7 +23,7 @@ public class RadiologyExam {
     private String setting;
     private String patientClass;
     private BigDecimal grossCharge;
-    private BigDecimal discountCashPrice;
+    private BigDecimal discountedCashPrice;
     private String payerName;
     private String planName;
     private BigDecimal negotiatedRate;
@@ -93,12 +93,12 @@ public class RadiologyExam {
         this.grossCharge = grossCharge;
     }
 
-    public BigDecimal getDiscountCashPrice() {
-        return discountCashPrice;
+    public BigDecimal getDiscountedCashPrice() {
+        return discountedCashPrice;
     }
 
-    public void setDiscountCashPrice(BigDecimal discountCashPrice) {
-        this.discountCashPrice = discountCashPrice;
+    public void setDiscountedCashPrice(BigDecimal discountedCashPrice) {
+        this.discountedCashPrice = discountedCashPrice;
     }
 
     public String getPayerName() {

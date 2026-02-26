@@ -15,13 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImportController {
 
     @Autowired
-    private CsvImportService csvimportService;
+    private CsvImportService csvImportService;
 
     @PostMapping("/radiology")
     public ResponseEntity<String> uploadCsv(@RequestParam("file") MultipartFile file,
                                             @RequestParam("hospitalName") String hospitalName){
         try {
-            csvimportService.importCsv(file, hospitalName);
+            csvImportService.importFile(file.getInputStream(), hospitalName);
             return ResponseEntity.ok("File imported successfully");
         } catch (Exception e) {
             e.printStackTrace();
